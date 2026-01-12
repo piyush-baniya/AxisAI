@@ -10,5 +10,5 @@ export const generateContent = async (prompt) => {
     contents: prompt,
   });
   console.log(result.text);
-  return () => result.text; // return the response
+  return result.text;
 };
