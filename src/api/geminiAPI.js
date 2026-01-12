@@ -9,6 +9,5 @@ export const generateContent = async (prompt) => {
     model: "gemini-2.5-flash",
     contents: prompt,
   });
-  console.log(result.text);
   return result.text;
 };

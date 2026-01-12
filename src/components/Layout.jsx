@@ -1,7 +1,8 @@
 import React from "react";
+import ChatBox from "./ChatBox";
 
 const Layout = () => {
-  return <div>Layout</div>;
+  return <ChatBox />;
 };
 
 export default Layout;
