@@ -7,10 +7,10 @@ const ChatMessage = ({ chatHistory }) => {
       {chatHistory.map((chat, index) => (
         <div
           key={index}
-          className={`text-white  p-3 rounded-lg max-w-[80%] ${
+          className={`text-white  p-3 rounded-lg max-w-[80%] w-fit wrap-break-word ${
             chat.role === "user"
               ? "bg-gray-600 self-end mt-6 mb-2"
-              : "self-start"
+              : "bg-blue-600 self-start mt-6 mb-2"
           }`}
         >
           {chat.role === "user" ? (
@@ -32,17 +32,16 @@ const ChatMessage = ({ chatHistory }) => {
               <p className="font-bold mb-1">Axis AI</p>
             </div>
           )}
+
+          {/* Scrollable Content Area */}
           <div
-            className={`${
-              chat.role === "ai" ? "ml-13" : "bg-gray-600"
-            }  overflow-auto
-                [&::-webkit-scrollbar]:w-2
-                [&::-webkit-scrollbar]:h-2
-          [&::-webkit-scrollbar-track]:bg-transparent
-          [&::-webkit-scrollbar-thumb]:bg-[#828e9e]
+            className={`w-full overflow-x-auto min-w-0 
+            ${chat.role === "ai" ? "ml-0" : ""} overflow-auto break-all
+            [&::-webkit-scrollbar]:h-2
+            [&::-webkit-scrollbar-track]:bg-transparent
+            [&::-webkit-scrollbar-thumb]:bg-[#828e9e]
             [&::-webkit-scrollbar-thumb]:rounded-full
-            hover:[&::-webkit-scrollbar-thumb]:bg-[#697889]
-                `}
+            hover:[&::-webkit-scrollbar-thumb]:bg-[#697889]`}
           >
             <ReactMarkdown>{chat.content}</ReactMarkdown>
           </div>

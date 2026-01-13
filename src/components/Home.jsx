@@ -9,33 +9,37 @@ const Home = () => {
   const { chatHistory, isLoading } = useSelector((state) => state.chat);
   const messagesEndRef = useRef(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   useEffect(() => {
-    scrollToBottom();
-  }, [chatHistory]);
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatHistory, isLoading]);
 
   return (
-    <div className="w-full h-full flex flex-col items-center relative">
+    // Force the main container to take the full height of the viewport
+    <div className="w-full h-screen flex flex-col bg-[#0e0e0f] relative">
+      {/* 1. Scrollable Chat Area */}
       <div
-        className="grow w-full overflow-y-auto flex flex-col px-4 pb-24 [&::-webkit-scrollbar]:w-2
+        className="flex-1 w-full overflow-y-auto px-4 pt-12 pb-4 
+          [&::-webkit-scrollbar]:w-2
           [&::-webkit-scrollbar-track]:bg-transparent
           [&::-webkit-scrollbar-thumb]:bg-[#3c3e41]
-            [&::-webkit-scrollbar-thumb]:rounded-full
-            hover:[&::-webkit-scrollbar-thumb]:bg-[#484b4e] mt-12 overflow-x-hidden"
+          [&::-webkit-scrollbar-thumb]:rounded-full"
       >
-        {chatHistory.length === 0 && !isLoading ? (
-          <Welcome />
-        ) : (
-          <ChatMessage chatHistory={chatHistory} />
-        )}
-        <Loading isLoading={isLoading} chatHistory={chatHistory} />
-        <div ref={messagesEndRef} />
+        <div className="max-w-4xl mx-auto w-full flex flex-col">
+          {chatHistory.length === 0 && !isLoading ? (
+            <Welcome />
+          ) : (
+            <ChatMessage chatHistory={chatHistory} />
+          )}
+          <Loading isLoading={isLoading} chatHistory={chatHistory} />
+          <div ref={messagesEndRef} />
+        </div>
       </div>
-      <div className="absolute bottom-4 w-full flex justify-center">
-        <ChatBox />
+
+      {/* 2. Fixed Input Area */}
+      <div className="w-full bg-[#0e0e0f] p-4 flex justify-center">
+        <div className="max-w-4xl w-full">
+          <ChatBox />
+        </div>
       </div>
     </div>
   );

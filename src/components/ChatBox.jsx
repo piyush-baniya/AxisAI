@@ -36,17 +36,20 @@ const ChatBox = () => {
       })
     );
     dispatch(setUserPrompt(""));
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+    }
     dispatch(setIsLoading(true));
 
     try {
       const res = await generateContent(input);
       dispatch(addChatHistory({ role: "ai", content: res }));
     } catch (error) {
-      console.error("Error generating content:", error);
+      console.error("Error generating content:", error.name);
       dispatch(
         addChatHistory({
           role: "ai",
-          content: "Sorry, something went wrong.",
+          content: `Error Generating Response: ${error}`,
         })
       );
     } finally {
@@ -62,31 +65,32 @@ const ChatBox = () => {
   };
 
   return (
-    <div className="bg-[#2a2a2a] overflow-hidden w-[95%] rounded-4xl relative pr-1">
-      <form onSubmit={(e) => handleSubmit(e)}>
+    <div className="bg-[#2a2a2a] w-full rounded-3xl relative border border-[#3c3e41] shadow-2xl">
+      <form onSubmit={handleSubmit} className="flex items-end p-2">
         <textarea
           ref={textareaRef}
-          onChange={(e) => handleInput(e)}
-          onKeyDown={(e) => handleEnter(e)}
+          onChange={handleInput}
+          onKeyDown={handleEnter}
           value={input}
           disabled={loading}
           rows={1}
-          className="bg-[#2a2a2a] w-full outline-none resize-none mt-1 p-4 text-white [&::-webkit-scrollbar]:w-2
-          [&::-webkit-scrollbar-track]:bg-transparent
-          [&::-webkit-scrollbar-thumb]:bg-[#3c3e41]
+          className="bg-transparent flex-1 outline-none resize-none p-3 text-white max-h-40 disabled:opacity-50             [&::-webkit-scrollbar]:w-2
+            [&::-webkit-scrollbar]:h-2
+            [&::-webkit-scrollbar-track]:bg-transparent
+            [&::-webkit-scrollbar-thumb]:bg-[#828e9e]
             [&::-webkit-scrollbar-thumb]:rounded-full
-            hover:[&::-webkit-scrollbar-thumb]:bg-[#484b4e] rounded-4xl max-h-40 disabled:opacity-50"
+            hover:[&::-webkit-scrollbar-thumb]:bg-[#697889]"
           placeholder={loading ? "Axis AI is thinking..." : "Ask Axis AI"}
         />
         <Button
           type="submit"
           disabled={loading || !input.trim()}
-          className="bg-[#2a2a2a] rounded-full absolute bottom-2 right-4 h-10 w-10 flex items-center justify-center disabled:opacity-50"
+          className="bg-[#3c3e41] hover:bg-[#484b4e] rounded-2xl h-11 w-11 flex items-center justify-center mb-1 mr-1 transition-all"
         >
           {loading ? (
-            <IoReloadCircleOutline className="animate-spin" />
+            <IoReloadCircleOutline className="animate-spin text-xl" />
           ) : (
-            <IoIosSend />
+            <IoIosSend className="text-xl" />
           )}
         </Button>
       </form>
