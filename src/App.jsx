@@ -20,7 +20,10 @@ const App = () => {
         <Header toggleSidebar={toggleSidebar} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/chat/:id" element={<ChatDetail />} />
+          <Route
+            path="/chat/:id"
+            element={<ChatDetail toggleSidebar={toggleSidebar} />}
+          />
           <Route path="*" element={<NotFound />} />{" "}
           {/* not found 404 error route */}
         </Routes>

@@ -1,12 +1,10 @@
-import React from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import ReactMarkdown from "react-markdown";
 import { IoArrowBack } from "react-icons/io5";
 import ChatDetailBox from "./ChatDetailBox";
-import ChatBox from "./ChatBox";
 
-const ChatDetail = () => {
+const ChatDetail = ({ toggleSidebar }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { chatHistory } = useSelector((state) => state.chat);
@@ -14,8 +12,10 @@ const ChatDetail = () => {
   const promptIndex = chatHistory.findIndex((chat) => chat.id === Number(id));
   const prompt = chatHistory[promptIndex];
   const response = chatHistory[promptIndex + 1];
-  console.log("Prompt:", prompt);
-  console.log("Response:", response);
+
+  useEffect(() => {
+    toggleSidebar(false);
+  }, []);
 
   if (!prompt) {
     return (
