@@ -4,6 +4,12 @@ import { IoReloadCircleOutline } from "react-icons/io5";
 import { Button } from "./ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
   setUserPrompt,
   addChatHistory,
   setIsLoading,
@@ -65,7 +71,7 @@ const ChatBox = () => {
   };
 
   return (
-    <div className="bg-[#2a2a2a] w-full rounded-3xl relative border border-[#3c3e41] shadow-2xl">
+    <div className="bg-[#2a2a2a] w-full rounded-full relative border border-[#3c3e41] shadow-2xl">
       <form onSubmit={handleSubmit} className="flex items-end p-2">
         <textarea
           ref={textareaRef}
@@ -82,17 +88,26 @@ const ChatBox = () => {
             hover:[&::-webkit-scrollbar-thumb]:bg-[#697889]"
           placeholder={loading ? "Axis AI is thinking..." : "Ask Axis AI"}
         />
-        <Button
-          type="submit"
-          disabled={loading || !input.trim()}
-          className="bg-[#3c3e41] hover:bg-[#484b4e] rounded-2xl h-11 w-11 flex items-center justify-center mb-1 mr-1 transition-all"
-        >
-          {loading ? (
-            <IoReloadCircleOutline className="animate-spin text-xl" />
-          ) : (
-            <IoIosSend className="text-xl" />
-          )}
-        </Button>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                type="submit"
+                disabled={loading || !input.trim()}
+                className="bg-[#3c3e41] hover:bg-[#484b4e] rounded-full h-11 w-11 flex items-center justify-center mb-1 mr-1 transition-all"
+              >
+                {loading ? (
+                  <IoReloadCircleOutline className="animate-spin text-xl" />
+                ) : (
+                  <IoIosSend className="text-xl" />
+                )}
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent side="top">
+              <p>Send</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </form>
     </div>
   );

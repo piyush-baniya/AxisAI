@@ -5,6 +5,7 @@ import ChatDetail from "./components/ChatDetail";
 import SideBar from "./components/SideBar";
 import Header from "./components/Header";
 import NotFound from "./components/NotFound";
+import { Toaster } from "@/components/ui/sonner";
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -18,6 +19,7 @@ const App = () => {
       <SideBar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <div className="grow flex flex-col h-full relative">
         <Header toggleSidebar={toggleSidebar} />
+        <Toaster position="top-right" richColors />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
