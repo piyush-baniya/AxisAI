@@ -45,25 +45,18 @@ const ChatMessage = ({ chatHistory }) => {
               isUser ? "bg-blue-600 self-end mt-6 mb-2" : "self-start"
             }`}
           >
-            {isUser ? (
-              <div className="flex items-center justify-end gap-3 mb-2">
-                <img
-                  src="/axisAI.png"
-                  alt="logo"
-                  className="h-10 w-10 rounded-full"
-                />
-                <p className="font-bold mb-1">You</p>
-              </div>
-            ) : (
-              <div className="flex items-center gap-3 mb-2">
-                <img
-                  src="/axisAI.png"
-                  alt="logo"
-                  className="h-10 w-10 rounded-full"
-                />
-                <p className="font-bold mb-1">Axis AI</p>
-              </div>
-            )}
+            <div
+              className={`flex items-center gap-3 mb-2 ${
+                isUser ? "justify-start" : ""
+              }`}
+            >
+              <img
+                src={isUser ? "/profile.jpg" : "/axisAI.png"}
+                alt="logo"
+                className="h-10 w-10 rounded-full"
+              />
+              <p className="font-bold mb-1">{isUser ? "You" : "Axis AI"}</p>
+            </div>
 
             <div
               className={`w-full overflow-x-auto break-all 
