@@ -19,5 +19,5 @@
 | **Frontend**         | React 19, Vite 7, React Router 7               |
 | **AI Engine**        | Google Gemini API (`@google/genai`)            |
 | **State Management** | Redux Toolkit, Redux Persist                   |
-| **Styling**          | Tailwind CSS 4, Class Variance Authority (CVA) |
+| **Styling**          | Tailwind CSS 4, ShadCn/UI |
 | **UI Components**    | Radix UI, Lucide React, Sonner (Toasts)        |
