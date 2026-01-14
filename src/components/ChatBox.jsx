@@ -51,11 +51,12 @@ const ChatBox = () => {
       const res = await generateContent(input);
       dispatch(addChatHistory({ role: "ai", content: res }));
     } catch (error) {
-      console.error("Error generating content:", error.name);
       dispatch(
         addChatHistory({
           role: "ai",
-          content: `Error Generating Response: ${error}`,
+          content: `Error Generating Response: ${
+            error.name === "ApiError" ? "Api Quota Reached" : error.name
+          }`,
         })
       );
     } finally {
