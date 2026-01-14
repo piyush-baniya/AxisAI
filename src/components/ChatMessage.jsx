@@ -22,7 +22,7 @@ const ChatMessage = ({ chatHistory }) => {
           key={index}
           className={`text-white  p-3 rounded-lg max-w-[90%] relative group w-fit wrap-break-word ${
             chat.role === "user"
-              ? "bg-gray-600 self-end mt-6 mb-2"
+              ? "bg-blue-600 self-end mt-6 mb-2"
               : "self-start"
           }`}
         >

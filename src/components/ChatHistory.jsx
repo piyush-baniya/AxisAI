@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { IoChatbubbleOutline } from "react-icons/io5";
+import { IoChatbubble } from "react-icons/io5";
 
 const ChatHistory = () => {
   const { chatHistory } = useSelector((state) => state.chat);
@@ -19,11 +19,12 @@ const ChatHistory = () => {
         <Link
           key={chat.id}
           to={`/chat/${chat.id}`}
-          className={`w-full flex items-center gap-2 p-2 rounded-lg text-sm mb-1 hover:bg-[#2a2a2a] transition-colors text-gray-300 hover:text-white ${
-            Number(id) === chat.id ? "bg-[#2a2a2a] text-white" : ""
-          }`}
+          className={`w-full flex items-center gap-2 p-2 min-w-60
+            rounded-lg text-sm mb-1 hover:bg-[#2a2a2a] transition-colors text-gray-300 hover:text-white ${
+              Number(id) === chat.id ? "bg-[#2a2a2a] text-white" : ""
+            }`}
         >
-          <IoChatbubbleOutline className="min-w-4" />
+          <IoChatbubble className="min-w-4 mt-1 h-5 w-5" />
           <span className="truncate">
             {chat.content.slice(0, 25)}
             {chat.content.length > 25 ? "..." : ""}

@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { IoArrowBack } from "react-icons/io5";
 import ChatDetailBox from "./ChatDetailBox";
+import { Button } from "./ui/button";
+import NotFound from "./NotFound";
 
 const ChatDetail = ({ toggleSidebar }) => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const { chatHistory } = useSelector((state) => state.chat);
 
   const promptIndex = chatHistory.findIndex((chat) => chat.id === Number(id));
@@ -18,20 +19,21 @@ const ChatDetail = ({ toggleSidebar }) => {
   }, []);
 
   if (!prompt) {
-    return (
-      <div className="p-8 text-center text-gray-400">Prompt not found</div>
-    );
+    return <NotFound />;
   }
 
   return (
-    <div className="w-full h-full flex flex-col items-center relative">
-      <button
-        onClick={() => navigate("/")}
-        className="flex items-center gap-2 text-gray-400 hover:text-white mb-6 w-fit transition-colors"
-      >
-        <IoArrowBack /> Back to Chat
-      </button>
-
+    <div
+      className="w-full h-full flex flex-col overflow-auto items-center relative           [&::-webkit-scrollbar]:w-2
+          [&::-webkit-scrollbar-track]:bg-transparent
+          [&::-webkit-scrollbar-thumb]:bg-[#3c3e41]
+          [&::-webkit-scrollbar-thumb]:rounded-full"
+    >
+      <Link to="/">
+        <Button variant="secondary" className="mt-3">
+          <IoArrowBack /> Back to Chat
+        </Button>
+      </Link>
       <ChatDetailBox who={prompt} />
       <ChatDetailBox who={response} />
     </div>
