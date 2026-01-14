@@ -1,16 +1,23 @@
-# React + Vite
+# 🌌 AxisAI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**AxisAI** is a modern, high-performance chatbot application powered by the **Google Gemini API** (Free Tier). Built with the cutting-edge React 19 ecosystem, it provides a seamless, fluid conversational experience with persistent state management and a polished UI.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Gemini AI Integration:** Leverages the `@google/genai` SDK for intelligent, real-time responses.
+- **State Persistence:** Uses **Redux Persist** to save your chat history locally so you never lose a conversation.
+- **Markdown Rendering:** Beautifully renders AI responses, including code blocks, lists, and tables.
+- **Modern UI/UX:** Crafted with **Tailwind CSS 4**, **Radix UI** primitives, and **Lucide** icons.
+- **Lightning Fast:** Powered by **Vite 7** for an optimized development and production experience.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Tech Stack
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Category             | Technology                                     |
+| :------------------- | :--------------------------------------------- |
+| **Frontend**         | React 19, Vite 7, React Router 7               |
+| **AI Engine**        | Google Gemini API (`@google/genai`)            |
+| **State Management** | Redux Toolkit, Redux Persist                   |
+| **Styling**          | Tailwind CSS 4, Class Variance Authority (CVA) |
+| **UI Components**    | Radix UI, Lucide React, Sonner (Toasts)        |
